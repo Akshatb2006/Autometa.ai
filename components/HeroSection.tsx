@@ -225,9 +225,9 @@ export default function HeroSection() {
                                 letterSpacing: "-0.035em", color: "var(--text)",
                                 marginBottom: 22,
                             }}
-                            initial={{ opacity: 0, y: 28 }}
+                            initial={{ opacity: 0, y: 16 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.2, ease }}
+                            transition={{ duration: 0.5, delay: 0.12, ease }}
                         >
                             We Build <span className="gradient-text">AI Systems</span><br />
                             for Real Estate Agencies
@@ -271,7 +271,7 @@ export default function HeroSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, delay: 0.55, ease }}
                         >
-                            <a href="/contact" className="btn-primary">Book Audit <ArrowRight size={15} /></a>
+                            <a href="/book-audit" className="btn-primary">Book Audit <ArrowRight size={15} /></a>
                             <a href="/services" className="btn-secondary">View Our Services <ChevronRight size={15} /></a>
                         </motion.div>
                     </div>

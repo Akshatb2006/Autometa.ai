@@ -9,11 +9,11 @@ import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 import LeadCapturePopup from "@/components/LeadCapturePopup";
+import EntryVideoPopup from "@/components/EntryVideoPopup";
 
 export default function Home() {
     return (
         <main style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)", overflowX: "clip", position: "relative" }}>
-            {/* All content */}
             <div style={{ position: "relative", zIndex: 1 }}>
                 <Navbar />
                 <HeroSection />
@@ -27,6 +27,7 @@ export default function Home() {
             </div>
             <FloatingContact />
             <LeadCapturePopup />
+            <EntryVideoPopup />
         </main>
     );
 }

@@ -157,7 +157,7 @@ export default function Navbar() {
                                 🇦🇪
                             </motion.span>
                         </a>
-                        <a href="/contact" className="btn-primary" style={{ fontSize: "0.82rem", padding: "0.5rem 1.25rem" }}>
+                        <a href="/book-audit" className="btn-primary" style={{ fontSize: "0.82rem", padding: "0.5rem 1.25rem" }}>
                             Book Audit
                         </a>
                     </motion.div>

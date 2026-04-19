@@ -99,19 +99,26 @@ export default function LeadCapturePopup() {
                         }}
                     />
 
-                    {/* Modal */}
+                    {/* Modal wrapper — flexbox centering so Framer Motion doesn't break it */}
+                    <div
+                        style={{
+                            position: "fixed",
+                            inset: 0,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            zIndex: 9999,
+                            pointerEvents: "none",
+                        }}
+                    >
                     <motion.div
                         initial={{ opacity: 0, scale: 0.92, y: 30 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.92, y: 30 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         style={{
-                            position: "fixed",
-                            top: "50%",
-                            left: "50%",
-                            transform: "translate(-50%, -50%)",
-                            width: "min(480px, 92vw)",
-                            zIndex: 9999,
+                            width: "min(520px, 92vw)",
+                            pointerEvents: "auto",
                             background: "var(--surface-solid)",
                             border: "1px solid var(--border)",
                             borderRadius: 20,
@@ -184,7 +191,7 @@ export default function LeadCapturePopup() {
                                         exit={{ opacity: 0, x: -20 }}
                                         transition={{ duration: 0.25 }}
                                     >
-                                        <div style={{ marginBottom: 20 }}>
+                                        <div style={{ marginBottom: 24, textAlign: "center" }}>
                                             <div
                                                 style={{
                                                     display: "inline-flex",
@@ -213,7 +220,7 @@ export default function LeadCapturePopup() {
                                                     color: "var(--text)",
                                                     letterSpacing: "-0.03em",
                                                     lineHeight: 1.2,
-                                                    marginBottom: 6,
+                                                    marginBottom: 8,
                                                 }}
                                             >
                                                 Let&apos;s see how we can help
@@ -223,6 +230,9 @@ export default function LeadCapturePopup() {
                                                     fontSize: "0.92rem",
                                                     color: "var(--text-muted)",
                                                     lineHeight: 1.55,
+                                                    maxWidth: 360,
+                                                    marginLeft: "auto",
+                                                    marginRight: "auto",
                                                 }}
                                             >
                                                 Tell us a bit about you — we&apos;ll follow up with a
@@ -297,7 +307,7 @@ export default function LeadCapturePopup() {
                                         exit={{ opacity: 0, x: -20 }}
                                         transition={{ duration: 0.25 }}
                                     >
-                                        <div style={{ marginBottom: 20 }}>
+                                        <div style={{ marginBottom: 24, textAlign: "center" }}>
                                             <h3
                                                 className="font-display"
                                                 style={{
@@ -306,7 +316,7 @@ export default function LeadCapturePopup() {
                                                     color: "var(--text)",
                                                     letterSpacing: "-0.03em",
                                                     lineHeight: 1.2,
-                                                    marginBottom: 6,
+                                                    marginBottom: 8,
                                                 }}
                                             >
                                                 One last thing
@@ -316,6 +326,9 @@ export default function LeadCapturePopup() {
                                                     fontSize: "0.92rem",
                                                     color: "var(--text-muted)",
                                                     lineHeight: 1.55,
+                                                    maxWidth: 360,
+                                                    marginLeft: "auto",
+                                                    marginRight: "auto",
                                                 }}
                                             >
                                                 A phone number helps us reach you faster — but it&apos;s
@@ -446,38 +459,53 @@ export default function LeadCapturePopup() {
                                 <div
                                     style={{
                                         display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                        marginTop: 24,
+                                        flexDirection: "column",
                                         gap: 10,
+                                        marginTop: 26,
                                     }}
                                 >
-                                    {step > 0 ? (
-                                        <button
-                                            onClick={goBack}
-                                            style={{
-                                                display: "flex",
-                                                alignItems: "center",
-                                                gap: 4,
-                                                padding: "0.7rem 1rem",
-                                                fontSize: "0.88rem",
-                                                fontWeight: 600,
-                                                color: "var(--text-muted)",
-                                                background: "transparent",
-                                                border: "1px solid var(--border)",
-                                                borderRadius: 10,
-                                                cursor: "pointer",
-                                                transition: "all 0.2s",
-                                            }}
-                                        >
-                                            <ArrowLeft size={14} /> Back
-                                        </button>
-                                    ) : (
+                                    <button
+                                        onClick={goNext}
+                                        className="btn-primary cta-glow-btn"
+                                        style={{
+                                            width: "100%",
+                                            fontSize: "0.98rem",
+                                            padding: "0.95rem 1.5rem",
+                                            justifyContent: "center",
+                                            fontWeight: 700,
+                                            letterSpacing: "-0.01em",
+                                        }}
+                                    >
+                                        {step === 0 ? "Continue" : "Get My Free Audit"}
+                                        <ArrowRight size={15} />
+                                    </button>
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                                        {step > 0 ? (
+                                            <button
+                                                onClick={goBack}
+                                                style={{
+                                                    display: "flex",
+                                                    alignItems: "center",
+                                                    gap: 4,
+                                                    padding: "0.6rem 0.8rem",
+                                                    fontSize: "0.85rem",
+                                                    fontWeight: 500,
+                                                    color: "var(--text-muted)",
+                                                    background: "transparent",
+                                                    border: "none",
+                                                    cursor: "pointer",
+                                                }}
+                                            >
+                                                <ArrowLeft size={13} /> Back
+                                            </button>
+                                        ) : (
+                                            <span />
+                                        )}
                                         <button
                                             onClick={dismiss}
                                             style={{
-                                                padding: "0.7rem 1rem",
-                                                fontSize: "0.85rem",
+                                                padding: "0.6rem 0.8rem",
+                                                fontSize: "0.82rem",
                                                 fontWeight: 500,
                                                 color: "var(--text-faint)",
                                                 background: "transparent",
@@ -487,26 +515,12 @@ export default function LeadCapturePopup() {
                                         >
                                             Maybe later
                                         </button>
-                                    )}
-
-                                    <button
-                                        onClick={goNext}
-                                        className="btn-primary"
-                                        style={{
-                                            fontSize: "0.88rem",
-                                            padding: "0.7rem 1.5rem",
-                                            display: "flex",
-                                            alignItems: "center",
-                                            gap: 6,
-                                        }}
-                                    >
-                                        {step === 0 ? "Continue" : "Submit"}
-                                        <ArrowRight size={14} />
-                                    </button>
+                                    </div>
                                 </div>
                             )}
                         </div>
                     </motion.div>
+                    </div>
                 </>
             )}
         </AnimatePresence>
