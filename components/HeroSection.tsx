@@ -193,7 +193,7 @@ export default function HeroSection() {
     const slide = slides[index];
 
     return (
-        <section id="hero" style={{ position: "relative", minHeight: isMobile ? "auto" : "calc(100vh - 40px)", display: "flex", alignItems: "center", overflow: "hidden" }}>
+        <section id="hero" style={{ position: "relative", minHeight: isMobile ? "auto" : "100vh", display: "flex", alignItems: "center", overflow: "hidden" }}>
             <div className="mesh-bg" />
             <div className="dot-grid" />
 
@@ -229,8 +229,8 @@ export default function HeroSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.5, delay: 0.12, ease }}
                         >
-                            We Build <span className="gradient-text">AI Systems</span><br />
-                            for Real Estate Agencies
+                            <span className="gradient-text">AI Systems</span> Built<br />
+                            Exclusively for Real Estate
                         </motion.h1>
 
                         <motion.p
@@ -242,7 +242,7 @@ export default function HeroSection() {
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.35, ease }}
                         >
-                            A strategic technological partner for real estate companies — from lead capture to closing.
+                            The strategic tech partner for real estate agencies, brokers, and developers — from first lead to signed deal.
                         </motion.p>
 
                         <motion.div

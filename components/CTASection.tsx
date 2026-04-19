@@ -47,8 +47,8 @@ export default function CTASection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.7, delay: 0.2, ease }}
                     >
-                        Let&apos;s Fix Your Systems<br />
-                        and <span className="gradient-text">Scale Your Operations</span>
+                        Let&apos;s Fix Your Real Estate Systems<br />
+                        and <span className="gradient-text">Scale Your Agency</span>
                     </motion.h2>
                     <motion.p
                         style={{ fontSize: "1.1rem", color: "var(--text-subtle)", lineHeight: 1.75, marginBottom: "2rem", maxWidth: 480 }}
@@ -57,7 +57,7 @@ export default function CTASection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.3, ease }}
                     >
-                        Book a free system audit. We&apos;ll analyze your current workflows and show you exactly how to streamline and automate your operations.
+                        Book a free real estate systems audit. We&apos;ll analyze your lead pipeline, CRM, and follow-ups — and show you exactly where AI pays for itself in the first 30 days.
                     </motion.p>
                     <motion.div
                         style={{ display: "flex", flexWrap: "wrap", gap: 10, marginBottom: "2rem" }}
@@ -66,8 +66,8 @@ export default function CTASection() {
                         viewport={{ once: true }}
                         transition={{ duration: 0.6, delay: 0.4, ease }}
                     >
-                        <a href="/contact" className="btn-primary cta-glow-btn">
-                            Book Audit <ArrowRight size={15} />
+                        <a href="#book-audit" className="btn-primary cta-glow-btn">
+                            Book a Free Real Estate Audit <ArrowRight size={15} />
                         </a>
                     </motion.div>
                     <motion.div

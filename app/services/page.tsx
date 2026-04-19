@@ -1,7 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Boxes, Sparkles, Cog } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Boxes, Sparkles, Cog, CheckCircle2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
@@ -24,6 +26,7 @@ const howItWorks = [
 
 export default function ServicesPage() {
     const isMobile = useIsMobile();
+    const [hovered, setHovered] = useState<string | null>(null);
 
     return (
         <main style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)", overflowX: "hidden" }}>
@@ -56,53 +59,59 @@ export default function ServicesPage() {
                 </div>
             </section>
 
-            {/* 3 Category Boxes */}
+            {/* 3 Category Boxes — rich hover */}
             <section style={{ padding: isMobile ? "2rem 0 5rem" : "3rem 0 7rem" }}>
                 <div className="container-wide">
-                    <div style={{ display: "flex", flexDirection: "column", gap: isMobile ? 20 : 28 }}>
+                    <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? 16 : 20 }}>
                         {serviceCategories.map((cat) => {
-                            const isCore = cat.slug === "core";
+                            const isHover = hovered === cat.slug;
                             return (
                                 <Link
                                     key={cat.slug}
                                     href={`/services/${cat.slug}`}
-                                    className="glass-card"
+                                    onMouseEnter={() => setHovered(cat.slug)}
+                                    onMouseLeave={() => setHovered(null)}
                                     style={{
-                                        display: "grid",
-                                        gridTemplateColumns: isMobile ? "1fr" : "0.85fr 1.15fr",
-                                        gap: 0,
-                                        padding: 0,
-                                        overflow: "hidden",
+                                        position: "relative",
+                                        display: "block",
                                         textDecoration: "none",
                                         color: "inherit",
-                                        minHeight: isCore ? (isMobile ? "auto" : 280) : isMobile ? "auto" : 220,
+                                        background: "var(--surface-solid)",
+                                        border: `1px solid ${isHover ? "var(--accent)" : "var(--border)"}`,
+                                        borderRadius: 20,
+                                        padding: isMobile ? "2rem 1.75rem" : "2.25rem 2rem",
+                                        overflow: "hidden",
+                                        transition: "border-color 0.35s ease, transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s",
+                                        transform: isHover ? "translateY(-6px)" : "translateY(0)",
+                                        boxShadow: isHover
+                                            ? "0 24px 60px rgba(0,102,255,0.18), 0 2px 6px rgba(10,14,24,0.06)"
+                                            : "0 1px 2px rgba(10,14,24,0.02), 0 8px 28px rgba(10,14,24,0.04)",
+                                        minHeight: isMobile ? "auto" : 360,
                                     }}
                                 >
-                                    {/* Visual side */}
-                                    <div
-                                        style={{
-                                            position: "relative",
-                                            background:
-                                                cat.slug === "core"
-                                                    ? "linear-gradient(135deg, rgba(0,102,255,0.10) 0%, rgba(0,163,255,0.06) 100%)"
-                                                    : cat.slug === "ai"
-                                                        ? "linear-gradient(135deg, rgba(0,163,255,0.08) 0%, rgba(0,102,255,0.04) 100%)"
-                                                        : "linear-gradient(135deg, rgba(10,14,24,0.04) 0%, rgba(0,102,255,0.06) 100%)",
-                                            borderRight: isMobile ? "none" : "1px solid var(--border-subtle)",
-                                            borderBottom: isMobile ? "1px solid var(--border-subtle)" : "none",
-                                            padding: isMobile ? "2rem" : "2.5rem",
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            justifyContent: "space-between",
-                                            gap: 20,
-                                            minHeight: isMobile ? 160 : "auto",
+                                    <motion.div
+                                        animate={{
+                                            opacity: isHover ? 1 : 0.55,
                                         }}
-                                    >
+                                        style={{
+                                            position: "absolute",
+                                            inset: 0,
+                                            background: `radial-gradient(circle at 30% 20%, ${
+                                                cat.slug === "core"
+                                                    ? "rgba(0,102,255,0.10)"
+                                                    : cat.slug === "ai"
+                                                        ? "rgba(0,163,255,0.10)"
+                                                        : "rgba(102,242,255,0.08)"
+                                            } 0%, transparent 55%)`,
+                                            pointerEvents: "none",
+                                        }}
+                                    />
+                                    <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", gap: 16, height: "100%" }}>
                                         <div
                                             style={{
-                                                width: isCore ? 72 : 58,
-                                                height: isCore ? 72 : 58,
-                                                borderRadius: isCore ? 18 : 14,
+                                                width: 60,
+                                                height: 60,
+                                                borderRadius: 16,
                                                 background: "var(--tag-bg)",
                                                 border: "1px solid var(--tag-border)",
                                                 display: "flex",
@@ -113,82 +122,109 @@ export default function ServicesPage() {
                                         >
                                             {iconMap[cat.slug]}
                                         </div>
-                                        <div
-                                            style={{
-                                                fontSize: "0.72rem",
-                                                fontWeight: 700,
-                                                color: "var(--accent)",
-                                                letterSpacing: "0.12em",
-                                                textTransform: "uppercase",
-                                                fontFamily: "'JetBrains Mono', monospace",
-                                            }}
-                                        >
-                                            {cat.eyebrow}
+                                        <div>
+                                            <div
+                                                style={{
+                                                    fontSize: "0.7rem",
+                                                    fontWeight: 700,
+                                                    color: "var(--accent)",
+                                                    letterSpacing: "0.12em",
+                                                    textTransform: "uppercase",
+                                                    fontFamily: "'JetBrains Mono', monospace",
+                                                    marginBottom: 8,
+                                                }}
+                                            >
+                                                {cat.eyebrow}
+                                            </div>
+                                            <h2
+                                                className="font-display"
+                                                style={{
+                                                    fontSize: "1.5rem",
+                                                    fontWeight: 700,
+                                                    color: "var(--text)",
+                                                    letterSpacing: "-0.025em",
+                                                    lineHeight: 1.15,
+                                                    marginBottom: 8,
+                                                }}
+                                            >
+                                                {cat.label}
+                                            </h2>
+                                            <p style={{ fontSize: "0.95rem", color: "var(--text-muted)", lineHeight: 1.6 }}>
+                                                {cat.heroTagline}
+                                            </p>
                                         </div>
-                                    </div>
 
-                                    {/* Content side */}
-                                    <div
-                                        style={{
-                                            padding: isMobile ? "1.75rem 1.75rem 2rem" : isCore ? "2.75rem 3rem" : "2.25rem 2.75rem",
-                                            display: "flex",
-                                            flexDirection: "column",
-                                            justifyContent: "center",
-                                            gap: 14,
-                                        }}
-                                    >
-                                        <h2
-                                            className="font-display"
-                                            style={{
-                                                fontSize: isCore
-                                                    ? isMobile
-                                                        ? "1.8rem"
-                                                        : "clamp(2rem, 3.4vw, 2.7rem)"
-                                                    : isMobile
-                                                        ? "1.5rem"
-                                                        : "clamp(1.7rem, 2.6vw, 2.1rem)",
-                                                fontWeight: 700,
-                                                color: "var(--text)",
-                                                letterSpacing: "-0.03em",
-                                                lineHeight: 1.1,
+                                        {/* Reveal on hover: full sub-service list */}
+                                        <motion.div
+                                            initial={false}
+                                            animate={{
+                                                height: isHover ? "auto" : 0,
+                                                opacity: isHover ? 1 : 0,
                                             }}
+                                            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                                            style={{ overflow: "hidden" }}
                                         >
-                                            {cat.label}
-                                        </h2>
-                                        <p
-                                            style={{
-                                                fontSize: isCore ? "1.1rem" : "1rem",
-                                                color: "var(--text-muted)",
-                                                lineHeight: 1.6,
-                                            }}
-                                        >
-                                            {cat.heroTagline}
-                                        </p>
-                                        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 4 }}>
-                                            {cat.subServices.slice(0, 4).map((s) => (
-                                                <span
-                                                    key={s.slug}
-                                                    className="tag"
-                                                    style={{ fontSize: "0.74rem" }}
+                                            <div
+                                                style={{
+                                                    padding: "0.85rem 1rem",
+                                                    background: "var(--surface-muted)",
+                                                    borderRadius: 12,
+                                                    border: "1px solid var(--border-subtle)",
+                                                    marginTop: 4,
+                                                }}
+                                            >
+                                                <div
+                                                    style={{
+                                                        fontSize: "0.68rem",
+                                                        fontWeight: 700,
+                                                        color: "var(--text-faint)",
+                                                        letterSpacing: "0.1em",
+                                                        textTransform: "uppercase",
+                                                        fontFamily: "'JetBrains Mono', monospace",
+                                                        marginBottom: 8,
+                                                    }}
                                                 >
-                                                    {s.title}
-                                                </span>
-                                            ))}
+                                                    Included in {cat.label}
+                                                </div>
+                                                <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 6 }}>
+                                                    {cat.subServices.map((s) => (
+                                                        <li
+                                                            key={s.slug}
+                                                            style={{
+                                                                display: "flex",
+                                                                alignItems: "flex-start",
+                                                                gap: 8,
+                                                                fontSize: "0.85rem",
+                                                                color: "var(--text-secondary)",
+                                                                lineHeight: 1.4,
+                                                            }}
+                                                        >
+                                                            <CheckCircle2 size={14} style={{ color: "var(--accent)", flexShrink: 0, marginTop: 3 }} />
+                                                            <span>{s.title}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        </motion.div>
+
+                                        <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 10 }}>
+                                            <span
+                                                style={{
+                                                    fontSize: "0.88rem",
+                                                    fontWeight: 700,
+                                                    color: "var(--accent)",
+                                                    display: "inline-flex",
+                                                    alignItems: "center",
+                                                    gap: 6,
+                                                }}
+                                            >
+                                                Explore {cat.label}
+                                                <ArrowRight size={14} style={{ transform: isHover ? "translateX(4px)" : "none", transition: "transform 0.3s" }} />
+                                            </span>
+                                            <span style={{ fontSize: "0.72rem", color: "var(--text-faint)", fontFamily: "'JetBrains Mono', monospace" }}>
+                                                {cat.subServices.length} services
+                                            </span>
                                         </div>
-                                        <span
-                                            style={{
-                                                display: "inline-flex",
-                                                alignItems: "center",
-                                                gap: 6,
-                                                fontSize: "0.92rem",
-                                                fontWeight: 700,
-                                                color: "var(--accent)",
-                                                marginTop: 6,
-                                            }}
-                                        >
-                                            Explore {cat.label}
-                                            <ArrowRight size={15} />
-                                        </span>
                                     </div>
                                 </Link>
                             );

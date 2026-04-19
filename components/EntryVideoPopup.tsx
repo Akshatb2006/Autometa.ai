@@ -189,7 +189,7 @@ export default function EntryVideoPopup() {
                             <h3
                                 className="font-display"
                                 style={{
-                                    fontSize: "1.55rem",
+                                    fontSize: "1.6rem",
                                     fontWeight: 700,
                                     color: "var(--text)",
                                     letterSpacing: "-0.03em",
@@ -199,24 +199,24 @@ export default function EntryVideoPopup() {
                             >
                                 See how we rebuild real estate agencies in 14 days
                             </h3>
-                            <p style={{ fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.6, marginBottom: 20, maxWidth: 460, marginLeft: "auto", marginRight: "auto" }}>
-                                Watch how our AI-powered lead systems capture every inquiry, follow up
+                            <p style={{ fontSize: "1rem", color: "var(--text-muted)", lineHeight: 1.6, marginBottom: 22, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
+                                Watch how our AI-powered real estate lead systems capture every inquiry, follow up
                                 automatically, and book more viewings — end to end.
                             </p>
 
-                            <div style={{ display: "flex", gap: 10, flexWrap: "wrap", justifyContent: "center" }}>
+                            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
                                 <a
-                                    href="/book-audit"
+                                    href="#book-audit"
                                     onClick={dismiss}
-                                    className="btn-primary"
-                                    style={{ fontSize: "0.92rem", padding: "0.8rem 1.6rem" }}
+                                    className="btn-primary cta-glow-btn"
+                                    style={{ fontSize: "1rem", padding: "0.95rem 1.9rem", fontWeight: 700, position: "relative" }}
                                 >
-                                    Book a Free Audit <ArrowRight size={14} />
+                                    Book a Free Audit <ArrowRight size={15} />
                                 </a>
                                 <button
                                     onClick={dismiss}
                                     className="btn-secondary"
-                                    style={{ fontSize: "0.92rem", padding: "0.8rem 1.6rem" }}
+                                    style={{ fontSize: "0.92rem", padding: "0.85rem 1.6rem" }}
                                 >
                                     Keep browsing
                                 </button>

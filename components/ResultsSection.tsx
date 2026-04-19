@@ -105,7 +105,7 @@ export default function ResultsSection() {
                             viewport={vp}
                             transition={{ duration: 0.7, delay: 0.1, ease }}
                         >
-                            Results That <span className="gradient-text">Speak</span>
+                            Real Estate Results That <span className="gradient-text">Speak</span>
                         </motion.h2>
                     </div>
 
@@ -239,8 +239,8 @@ export default function ResultsSection() {
                         viewport={vp}
                         transition={{ duration: 0.6, ease }}
                     >
-                        <a href="/contact" className="btn-primary">
-                            Book Strategy Call <ArrowRight size={15} />
+                        <a href="#book-audit" className="btn-primary cta-glow-btn">
+                            Book a Strategy Call <ArrowRight size={15} />
                         </a>
                     </motion.div>
                 </div>
@@ -274,7 +274,7 @@ export default function ResultsSection() {
                             viewport={vp}
                             transition={{ duration: 0.7, delay: 0.1, ease }}
                         >
-                            What Our <span className="gradient-text">Clients Say</span>
+                            What Real Estate Leaders <span className="gradient-text">Say</span>
                         </motion.h2>
                     </div>
 

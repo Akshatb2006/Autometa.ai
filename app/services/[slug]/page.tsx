@@ -3,6 +3,7 @@
 import { use, useState } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { motion } from "framer-motion";
 import {
     ArrowRight,
     ArrowLeft,
@@ -20,6 +21,7 @@ import {
     Link2,
     Play,
     CheckCircle2,
+    Users,
 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -63,7 +65,7 @@ export default function ServiceCategoryPage({
         <main style={{ minHeight: "100vh", background: "var(--bg)", color: "var(--text)", overflowX: "hidden" }}>
             <Navbar />
 
-            {/* Hero */}
+            {/* Hero with human persona */}
             <section style={{ padding: isMobile ? "5rem 0 2.5rem" : "7rem 0 3.5rem", position: "relative" }}>
                 <div className="mesh-bg" />
                 <div className="container-wide" style={{ position: "relative", zIndex: 1 }}>
@@ -82,24 +84,132 @@ export default function ServiceCategoryPage({
                     >
                         <ArrowLeft size={14} /> All Services
                     </Link>
-                    <div style={{ maxWidth: 780 }}>
-                        <span className="section-eyebrow">{category.eyebrow}</span>
-                        <h1
-                            className="font-display"
-                            style={{
-                                fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
-                                fontWeight: 700,
-                                letterSpacing: "-0.04em",
-                                color: "var(--text)",
-                                lineHeight: 1.08,
-                                marginBottom: 18,
-                            }}
-                        >
-                            {category.heroTitle}
-                        </h1>
-                        <p style={{ fontSize: "1.15rem", color: "var(--text-muted)", lineHeight: 1.7 }}>
-                            {category.heroTagline}
-                        </p>
+                    <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr", gap: 36, alignItems: "center" }}>
+                        <div>
+                            <span className="section-eyebrow">{category.eyebrow}</span>
+                            <h1
+                                className="font-display"
+                                style={{
+                                    fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
+                                    fontWeight: 700,
+                                    letterSpacing: "-0.04em",
+                                    color: "var(--text)",
+                                    lineHeight: 1.08,
+                                    marginBottom: 18,
+                                }}
+                            >
+                                {category.heroTitle}
+                            </h1>
+                            <p style={{ fontSize: "1.15rem", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: 22 }}>
+                                {category.heroTagline}
+                            </p>
+                            <Link href="#book-audit" className="btn-primary cta-glow-btn" style={{ position: "relative" }}>
+                                Book a Free Audit <ArrowRight size={16} />
+                            </Link>
+                        </div>
+
+                        {/* Human persona illustration */}
+                        {!isMobile && (
+                            <motion.div
+                                initial={{ opacity: 0, x: 24 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                                style={{ position: "relative" }}
+                            >
+                                <div
+                                    style={{
+                                        position: "relative",
+                                        aspectRatio: "1 / 1",
+                                        maxWidth: 460,
+                                        marginLeft: "auto",
+                                        background: "linear-gradient(135deg, rgba(0,102,255,0.08) 0%, rgba(0,163,255,0.04) 100%)",
+                                        borderRadius: 28,
+                                        border: "1px solid var(--border)",
+                                        overflow: "hidden",
+                                        boxShadow: "0 20px 60px rgba(10,14,24,0.06)",
+                                    }}
+                                >
+                                    <div
+                                        style={{
+                                            position: "absolute",
+                                            inset: 0,
+                                            backgroundImage: "radial-gradient(circle, rgba(0,102,255,0.10) 1px, transparent 1px)",
+                                            backgroundSize: "22px 22px",
+                                            opacity: 0.6,
+                                        }}
+                                    />
+                                    {/* Persona silhouette */}
+                                    <div
+                                        style={{
+                                            position: "absolute",
+                                            inset: 0,
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                        }}
+                                    >
+                                        <div
+                                            style={{
+                                                width: 190,
+                                                height: 190,
+                                                borderRadius: "50%",
+                                                background: "linear-gradient(135deg, #0A0E18 0%, #0066FF 120%)",
+                                                display: "flex",
+                                                alignItems: "center",
+                                                justifyContent: "center",
+                                                boxShadow: "0 24px 60px rgba(0,102,255,0.35)",
+                                            }}
+                                        >
+                                            <Users size={78} color="#fff" strokeWidth={1.5} />
+                                        </div>
+                                    </div>
+                                    {/* Speech bubble */}
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 16, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{
+                                            position: "absolute",
+                                            top: "14%",
+                                            right: "6%",
+                                            maxWidth: 210,
+                                            padding: "0.9rem 1.1rem",
+                                            background: "#FFFFFF",
+                                            border: "1px solid var(--border)",
+                                            borderRadius: 18,
+                                            borderBottomRightRadius: 4,
+                                            boxShadow: "0 10px 30px rgba(10,14,24,0.08)",
+                                            fontSize: "0.88rem",
+                                            color: "var(--text)",
+                                            fontWeight: 500,
+                                            lineHeight: 1.5,
+                                        }}
+                                    >
+                                        Hi — want me to walk you through our {category.label.toLowerCase()}?
+                                    </motion.div>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -14 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                                        style={{
+                                            position: "absolute",
+                                            bottom: "12%",
+                                            left: "8%",
+                                            padding: "0.6rem 0.85rem",
+                                            background: "var(--accent)",
+                                            color: "#fff",
+                                            borderRadius: 14,
+                                            borderBottomLeftRadius: 4,
+                                            fontSize: "0.82rem",
+                                            fontWeight: 600,
+                                            boxShadow: "0 10px 24px rgba(0,102,255,0.3)",
+                                        }}
+                                    >
+                                        Yes, show me →
+                                    </motion.div>
+                                </div>
+                            </motion.div>
+                        )}
                     </div>
                 </div>
             </section>
@@ -313,6 +423,116 @@ export default function ServiceCategoryPage({
                                     }}
                                 >
                                     {active.videoUrl || active.imageUrl ? active.title : "Video / visual coming soon"}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Explanatory video block */}
+            <section style={{ padding: isMobile ? "3rem 0" : "4rem 0" }}>
+                <div className="container-wide">
+                    <div
+                        style={{
+                            background: "var(--surface-solid)",
+                            border: "1px solid var(--border)",
+                            borderRadius: 22,
+                            overflow: "hidden",
+                            boxShadow: "0 1px 2px rgba(10,14,24,0.02), 0 16px 48px rgba(10,14,24,0.06)",
+                        }}
+                    >
+                        <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr" }}>
+                            <div
+                                style={{
+                                    position: "relative",
+                                    aspectRatio: isMobile ? "16/9" : "auto",
+                                    background: "linear-gradient(135deg, #0A0E18 0%, #0066FF 140%)",
+                                    minHeight: isMobile ? "auto" : 320,
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    cursor: "pointer",
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        position: "absolute",
+                                        inset: 0,
+                                        backgroundImage:
+                                            "radial-gradient(circle at 30% 30%, rgba(0,163,255,0.28) 0%, transparent 55%), radial-gradient(circle at 75% 70%, rgba(0,102,255,0.25) 0%, transparent 50%)",
+                                    }}
+                                />
+                                <div style={{ position: "relative", zIndex: 1, textAlign: "center", color: "#fff" }}>
+                                    <div
+                                        style={{
+                                            width: 84,
+                                            height: 84,
+                                            borderRadius: "50%",
+                                            background: "rgba(255,255,255,0.96)",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            margin: "0 auto 14px",
+                                            boxShadow: "0 16px 48px rgba(0,102,255,0.45)",
+                                        }}
+                                    >
+                                        <Play size={30} fill="var(--accent)" color="var(--accent)" style={{ marginLeft: 3 }} />
+                                    </div>
+                                    <div
+                                        style={{
+                                            fontSize: "0.72rem",
+                                            fontWeight: 700,
+                                            letterSpacing: "0.12em",
+                                            textTransform: "uppercase",
+                                            fontFamily: "'JetBrains Mono', monospace",
+                                            opacity: 0.85,
+                                        }}
+                                    >
+                                        Explainer · {category.label}
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                style={{
+                                    padding: isMobile ? "1.75rem" : "2.25rem 2.5rem",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                    gap: 12,
+                                }}
+                            >
+                                <div
+                                    style={{
+                                        fontSize: "0.72rem",
+                                        fontWeight: 700,
+                                        color: "var(--accent)",
+                                        letterSpacing: "0.12em",
+                                        textTransform: "uppercase",
+                                        fontFamily: "'JetBrains Mono', monospace",
+                                    }}
+                                >
+                                    Why it matters
+                                </div>
+                                <h3
+                                    className="font-display"
+                                    style={{
+                                        fontSize: isMobile ? "1.4rem" : "1.7rem",
+                                        fontWeight: 700,
+                                        color: "var(--text)",
+                                        letterSpacing: "-0.025em",
+                                        lineHeight: 1.18,
+                                    }}
+                                >
+                                    A 2-minute walkthrough of our {category.label.toLowerCase()} for real estate
+                                </h3>
+                                <p style={{ fontSize: "0.98rem", color: "var(--text-muted)", lineHeight: 1.65 }}>
+                                    A quick video from our team showing how these systems come together in a real agency deployment — lead capture, automation, and the AI in action.
+                                </p>
+                                <div>
+                                    <Link href="#book-audit" className="btn-secondary" style={{ fontSize: "0.9rem" }}>
+                                        Book a call to go deeper <ArrowRight size={14} />
+                                    </Link>
                                 </div>
                             </div>
                         </div>

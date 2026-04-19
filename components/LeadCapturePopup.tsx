@@ -117,13 +117,15 @@ export default function LeadCapturePopup() {
                         exit={{ opacity: 0, scale: 0.92, y: 30 }}
                         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                         style={{
-                            width: "min(520px, 92vw)",
+                            width: "min(540px, 92vw)",
+                            maxHeight: "92vh",
+                            overflowY: "auto",
                             pointerEvents: "auto",
                             background: "var(--surface-solid)",
                             border: "1px solid var(--border)",
-                            borderRadius: 20,
-                            overflow: "hidden",
-                            boxShadow: "0 32px 80px rgba(10,14,24,0.18), 0 0 60px rgba(0,102,255,0.10)",
+                            borderRadius: 22,
+                            boxShadow: "0 40px 100px rgba(10,14,24,0.22), 0 0 80px rgba(0,102,255,0.18)",
+                            position: "relative",
                         }}
                     >
                         {/* Top accent bar */}
@@ -215,7 +217,7 @@ export default function LeadCapturePopup() {
                                             <h3
                                                 className="font-display"
                                                 style={{
-                                                    fontSize: "1.55rem",
+                                                    fontSize: "1.65rem",
                                                     fontWeight: 700,
                                                     color: "var(--text)",
                                                     letterSpacing: "-0.03em",
@@ -223,20 +225,19 @@ export default function LeadCapturePopup() {
                                                     marginBottom: 8,
                                                 }}
                                             >
-                                                Let&apos;s see how we can help
+                                                Free real estate systems audit
                                             </h3>
                                             <p
                                                 style={{
-                                                    fontSize: "0.92rem",
+                                                    fontSize: "0.95rem",
                                                     color: "var(--text-muted)",
                                                     lineHeight: 1.55,
-                                                    maxWidth: 360,
+                                                    maxWidth: 380,
                                                     marginLeft: "auto",
                                                     marginRight: "auto",
                                                 }}
                                             >
-                                                Tell us a bit about you — we&apos;ll follow up with a
-                                                tailored system audit.
+                                                Tell us a bit about your real estate business — we&apos;ll follow up within 24 hours with a tailored audit plan.
                                             </p>
                                         </div>
 
@@ -469,15 +470,17 @@ export default function LeadCapturePopup() {
                                         className="btn-primary cta-glow-btn"
                                         style={{
                                             width: "100%",
-                                            fontSize: "0.98rem",
-                                            padding: "0.95rem 1.5rem",
+                                            fontSize: "1.05rem",
+                                            padding: "1.05rem 1.5rem",
                                             justifyContent: "center",
                                             fontWeight: 700,
                                             letterSpacing: "-0.01em",
+                                            position: "relative",
+                                            boxShadow: "0 10px 32px rgba(0,102,255,0.35), 0 2px 6px rgba(10,14,24,0.08)",
                                         }}
                                     >
-                                        {step === 0 ? "Continue" : "Get My Free Audit"}
-                                        <ArrowRight size={15} />
+                                        {step === 0 ? "Continue" : "Get My Free Real Estate Audit"}
+                                        <ArrowRight size={16} />
                                     </button>
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                         {step > 0 ? (
